@@ -85,10 +85,10 @@ public class CommandMembers extends CommandTreeBase
 			if(pair.getRight().addMember(uuid))
 			{
 				areas.dataChanged();
-				player.sendMessage(new TextComponentTranslation("lm.command.members.add.success", player.getDisplayName(), pair.getRight().getName()));
+				player.sendMessage(new TextComponentTranslation("lm.command.members.add.success", args[1], pair.getRight().getName()));
 			}
 			else
-				player.sendMessage(new TextComponentTranslation("lm.command.members.add.already", player.getDisplayName(), pair.getRight().getName()));
+				player.sendMessage(new TextComponentTranslation("lm.command.members.add.already", args[1], pair.getRight().getName()));
 		}
 
 		@Override
@@ -130,14 +130,13 @@ public class CommandMembers extends CommandTreeBase
 			Pair<CapabilityAreas, Area> pair = getAreaAndCap(server, args[0]);
 			checkCanEditArea(server, sender, pair.getRight());
 
-			UUID uuid = getUuidFromPlayerName(server, args[1]);
-			if(pair.getRight().removeMember(uuid))
+			if(pair.getRight().removeMember(getUuidFromPlayerName(server, args[1])))
 			{
 				pair.getLeft().dataChanged();
-				player.sendMessage(new TextComponentTranslation("lm.command.members.remove.success", player.getDisplayName(), pair.getRight().getName()));
+				player.sendMessage(new TextComponentTranslation("lm.command.members.remove.success", args[1], pair.getRight().getName()));
 			}
 			else
-				player.sendMessage(new TextComponentTranslation("lm.command.members.remove.already", player.getDisplayName(), pair.getRight().getName()));
+				player.sendMessage(new TextComponentTranslation("lm.command.members.remove.already", args[1], pair.getRight().getName()));
 		}
 
 		@Override
